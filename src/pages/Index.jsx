@@ -158,16 +158,30 @@ const Index = () => {
           Pass
         </Button>
       </Flex>
-      <Grid gridTemplateColumns={`repeat(${BOARD_SIZE}, 1fr)`} gridTemplateRows={`repeat(${BOARD_SIZE}, 1fr)`} gap={1} bg={useColorModeValue("green.100", "green.800")} border="2px solid" borderColor={useColorModeValue("green.800", "green.100")} borderRadius="md" p={2}>
-        {board.map((row, rowIndex) =>
-          row.map((cell, colIndex) => (
-            <Box key={`${rowIndex}-${colIndex}`} bg={useColorModeValue("green.200", "green.700")} borderRadius="md" display="flex" justifyContent="center" alignItems="center" onClick={() => placePiece(rowIndex, colIndex)} cursor={isValidMove(board, rowIndex, colIndex, currentPlayer) ? "pointer" : "default"}>
-              {cell === 1 && <Box w="80%" h="80%" borderRadius="50%" bg="black" boxShadow="inner" />}
-              {cell === 2 && <Box w="80%" h="80%" borderRadius="50%" bg="white" boxShadow="inner" />}
-            </Box>
-          )),
-        )}
-      </Grid>
+      <Flex direction="column" alignItems="center">
+        <Heading as="h1" mb={4}>
+          Othello
+        </Heading>
+        <Grid gridTemplateColumns={`repeat(${BOARD_SIZE}, 1fr)`} gridTemplateRows={`repeat(${BOARD_SIZE}, 1fr)`} gap={1} bg="white" border="2px solid black" p={2} mb={4} width="400px">
+          {board.map((row, rowIndex) =>
+            row.map((cell, colIndex) => (
+              <Box key={`${rowIndex}-${colIndex}`} border="1px solid black" display="flex" justifyContent="center" alignItems="center" onClick={() => placePiece(rowIndex, colIndex)} cursor={isValidMove(board, rowIndex, colIndex, currentPlayer) ? "pointer" : "default"}>
+                {cell === 1 && <Box w="80%" h="80%" borderRadius="50%" bg="black" />}
+                {cell === 2 && <Box w="80%" h="80%" borderRadius="50%" bg="white" />}
+              </Box>
+            ))
+          )}
+        </Grid>
+        <Flex mb={4} alignItems="center">
+          <Text mr={4}>
+            Player 1: {scores[1]} | Player 2: {scores[2]}
+          </Text>
+          <Text fontWeight="bold">Current Player: {currentPlayer}</Text>
+          <Button ml={4} onClick={handlePass} disabled={validMoves.length > 0} colorScheme="blue">
+            Pass
+          </Button>
+        </Flex>
+      </Flex>
     </Box>
   );
 };
