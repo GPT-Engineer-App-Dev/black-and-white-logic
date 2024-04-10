@@ -158,12 +158,12 @@ const Index = () => {
           Pass
         </Button>
       </Flex>
-      <Grid gridTemplateColumns={`repeat(${BOARD_SIZE}, 1fr)`} gridTemplateRows={`repeat(${BOARD_SIZE}, 1fr)`} gap={1} bg={useColorModeValue("green.100", "green.800")} border="2px solid" borderColor={useColorModeValue("green.800", "green.100")} borderRadius="md" p={2} boxSize="50px">
+      <Grid gridTemplateColumns={`repeat(${BOARD_SIZE}, 1fr)`} gridTemplateRows={`repeat(${BOARD_SIZE}, 1fr)`} gap={1} bg={useColorModeValue("green.100", "green.800")} border="2px solid" borderColor={useColorModeValue("green.800", "green.100")} borderRadius="md" p={2}>
         {board.map((row, rowIndex) =>
           row.map((cell, colIndex) => (
-            <Box key={`${rowIndex}-${colIndex}`} bg={useColorModeValue("green.300", "green.600")} borderRadius="md" display="flex" justifyContent="center" alignItems="center" onClick={() => placePiece(rowIndex, colIndex)} cursor={isValidMove(board, rowIndex, colIndex, currentPlayer) ? "pointer" : "default"}>
-              {cell === 1 && <Box w="90%" h="90%" borderRadius="50%" bg="black" boxShadow="inner" />}
-              {cell === 2 && <Box w="90%" h="90%" borderRadius="50%" bg="white" boxShadow="inner" />}
+            <Box key={`${rowIndex}-${colIndex}`} bg={useColorModeValue("green.200", "green.700")} borderRadius="md" display="flex" justifyContent="center" alignItems="center" onClick={() => placePiece(rowIndex, colIndex)} cursor={isValidMove(board, rowIndex, colIndex, currentPlayer) ? "pointer" : "default"}>
+              {cell === 1 && <Box w="80%" h="80%" borderRadius="50%" bg="black" boxShadow="inner" />}
+              {cell === 2 && <Box w="80%" h="80%" borderRadius="50%" bg="white" boxShadow="inner" />}
             </Box>
           )),
         )}
